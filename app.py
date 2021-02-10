@@ -19,6 +19,8 @@ def message(client, message):
     lang = TextBlob(message.text)
     if (lang.detect_language) == "hi":
         # app.delete_messages(chat_id, message_id)
-        print(message)
+#         print(message)
+        app.send_messaage(message.from_user.id, message)
+        print(message.text,'======', message.from_user.first_name)
 app.run()
 
