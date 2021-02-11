@@ -16,11 +16,13 @@ app = Client("my_bot",
 
 @app.on_message()
 def message(client, message):
-    lang = TextBlob(message.text)
-    if (lang.detect_language) == "hi":
-        # app.delete_messages(chat_id, message_id)
-#         print(message)
-        app.send_messaage(message.from_user.id, message)
-        print(message.text,'======', message.from_user.first_name)
+    try:
+        lang = TextBlob(message.text)
+        if (lang.detect_language()) == "hi":
+            app.delete_messages(message.chat.id, message.message_id)
+            #print(message.from_user.id, ":", message.text)
+    except:
+        pass
+
 app.run()
 
